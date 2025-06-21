@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+     <%- include("home.ejs"); %><br><br>
+
+     <div class="container mt-1 bg-dark p-5"  >
+    <form name="frm" action="/empFinalUpdate" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" name="eid" placeholder="Enter eid" value="<%= eid%>">
+        <input type="hidden" name="oldphoto" value="<%= photo %>"   />
+
+        <div class="form-group">
+        <input type="text" name="name" class="form-control" placeholder="Enter your Full name" value="<%= name%>"   onkeyup="fullnamevalidation(this.value)"  /><br>
+        </div>
+
+        <div class="form-group">
+        <input type="text" name="contact" class="form-control" placeholder="Enter Contact" value="<%= contact %>"  onkeyup="phonevalidation(this.value)"  /> <br>
+        </div>
+            
+        <div class="form-group">
+        <input type="email" name="email" class="form-control" placeholder="Enter  email" value="<%= email %>" onblur="checkEmailExistance(this.value); checkEmailExistance(this.value)"  /><br>
+        </div>
+    
+        <div class="form-group">
+        <input type="file" name="photo" class="form-control"  onchange="photovalidation()"  /><br>
+        </div>
+   
+        <div class="form-group">
+         <input type="text" name="salary" class="form-control" placeholder="Enter Salary" value="<%= salary %>"onkeyup="salaryvalidation(this.value)"/><br>
+        </div>
+   
+        <div class="form-group">
+                 <select name="deptid" class="form-control"  >
+                                <option>Choose Dept</option>
+                                        <% deptList.forEach((deptData,index)=>
+                                          {
+                                          %>
+                                         <option value="<%=deptData.deptid%>">
+                                          <%=deptData.deptname%>
+                                        </option>
+                                        <% }); %>
+                                        </select>
+                                </div>
+    
+         <div class="form-group ">
+             <input type="submit" name="s" class="form-control  btn-primary" value="update employee" />
+         </div>
+    </form>
+     </div>
+
+</body>
+</html>

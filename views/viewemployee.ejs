@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    window.onload = () => {
+        getEmployeeByDept(0); // auto-load all employees
+    };
+</script>
+
+
+</head>
+<body>
+    
+<%- include("home.ejs") %>
+    <div class="container bg-dark mt-5 p-5">
+         <div class="form-group">
+             <select name="deptid" id="did" class="form-control" onchange="getEmployeeByDept(this.value)">
+             <option value="0">Choose Dept</option>
+                    <% deptList.forEach((deptData,index)=>
+                    {  
+                    %>
+                    <option value="<%=deptData.deptid%>"><%=deptData.deptname%></option>
+                    <% }); %>
+             </select>
+
+             <table class="table bg-white mt-5 ">
+                <thead >
+                <tr>
+                    <th>SR NO</th>
+                    <th>NAME</th>
+                    <th>EMAIL</th>
+                    <th>CONTACT</th>
+                    <th>SALARy</th>
+                    <th>PHOTO</th>
+                    <th>DEPTID</th>
+                    <th>DELETE</th>
+                    <th>UPDATE</th>
+                </tr>
+                </thead>
+                <tbody id="tblBody1">
+
+                </tbody>
+             </table>
+         </div>                                                                                             
+       </div>
+</body>
+</html>

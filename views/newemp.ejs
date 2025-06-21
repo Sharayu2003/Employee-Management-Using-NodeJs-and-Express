@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script type="text/javascript" src="ajax.js"></script>
+         <script type="text/javascript" src="/js/employee.js"></script>
+</head>
+
+<body>
+     <%- include('home.ejs') %>
+
+    <div class="container mt-1 bg-dark p-5">
+        <form name="frm" action="/saveemp" method="POST" enctype="multipart/form-data">
+            <!-- Name -->
+            <div class="form-group">
+                <input type="text" name="name" class="form-control" value=""
+                    placeholder="Enter Name" onkeyup="fullnamevalidation(this.value)" required />
+                <span id="a"></span>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <input type="text" id="uemail" name="email" class="form-control" value=""
+                    placeholder="Enter Email" onblur="emailvalidation(this.value); checkEmailExistance(this.value)" required />
+                <span class="text-white" id="b"></span><br>
+              <label class="text-white" id="labelMsg"></label> <!-- we use this lable for show msg means this email already exist -->
+
+            </div>
+
+            <!-- Contact -->
+            <div class="form-group">
+                <input type="text" name="contact" class="form-control" value=""
+                    placeholder="Enter Contact" onkeyup="phonevalidation(this.value)" required />
+                <span id="c"></span>
+            </div>
+
+            <!-- Salary -->
+            <div class="form-group">
+                <input type="text" name="sal" class="form-control" value=""
+                    placeholder="Enter Salary" onkeyup="salaryvalidation(this.value)" required />
+                <span id="f"></span>
+            </div>
+
+            <!-- Photo -->
+            <div class="form-group">
+                <input type="file" name="photo" class="form-control"
+                    placeholder="Enter Photo" onchange="photovalidation()" required />
+                <span id="g"></span>
+            </div>
+
+            <!-- Department -->
+            <div class="form-group">
+                <select name="deptid" class="form-control" required>
+                    <option>Choose Dept</option>
+                    <% deptList.forEach((deptData,index)=> { %>
+                        <option value="<%=deptData.deptid%>">
+                            <%=deptData.deptname%>
+                        </option>
+                    <% }); %>
+                </select>
+            </div>
+
+            <!-- Submit -->
+            <div class="form-group">
+                <input type="submit" name="s" class="form-control btn btn-primary" value="Add New Employee" />
+            </div>
+
+            <% if(msg.length!=0) { %>
+                <div class="alert alert-success" role="alert">
+                    <%=msg%>
+                </div>
+            <% } %>
+        </form>
+    </div>
+</body>
+
+</html>

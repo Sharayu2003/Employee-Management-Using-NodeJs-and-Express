@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("home.ejs"); %>
+    <br><br>
+    <form name="frm" action="/updatedept" method="POST">
+    <div class="container bg-dark p-5"  >
+      
+      <div class="form-group">
+          <input type="hidden" class="form-control" name="id" value="<%=deptId%>"   />
+        </div>
+      <div class="form-group">
+          <input type="text" class="form-control" name="name" value="<%=deptName%>" />
+        </div>
+         <div class="form-group">
+          <input type="submit" class="form-control" name="s" value="UPDATE DEPARTMENT" />
+        </div>
+    </div>
+    </form>
+</body>
+</html>
